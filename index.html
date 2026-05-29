@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Silvia Wu — AI Workflow Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-soft: #f8f9fb;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f8f9fb;
+    --text: #1a1d2d;
+    --text-muted: #5a6178;
+    --text-dim: #8b90a0;
+    --accent: #4f46e5;
+    --accent-light: #6366f1;
+    --accent-soft: rgba(79,70,229,0.08);
+    --border: #e5e7ec;
+    --border-light: #d1d5de;
+    --radius: 3px;
+    --radius-sm: 3px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow: 0 4px 16px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.04);
+    --shadow-lg: 0 8px 32px rgba(0,0,0,0.1), 0 2px 6px rgba(0,0,0,0.04);
+    --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* bucket accent colors */
+    --internal: #4f46e5;
+    --internal-soft: rgba(79,70,229,0.07);
+    --internal-mid: rgba(79,70,229,0.12);
+    --client: #059669;
+    --client-soft: rgba(5,150,105,0.07);
+    --client-mid: rgba(5,150,105,0.12);
+
+    /* sub-category colors */
+    --sub-proposal: #f59e0b;
+    --sub-presentation: #ec4899;
+    --sub-project: #3b82f6;
+    --sub-scoping: #8b5cf6;
+    --sub-supply: #10b981;
+    --sub-knowledge: #6366f1;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---- NAV ---- */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+  }
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: color var(--transition);
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* ---- HERO ---- */
+  .hero {
+    padding: 9rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, var(--bg-soft) 0%, var(--bg) 100%);
+  }
+  .hero .eyebrow {
+    color: var(--accent);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .hero h1 {
+    font-size: clamp(2.5rem, 5vw, 3.75rem);
+    font-weight: 800;
+    letter-spacing: 0;
+    margin-bottom: 1rem;
+    position: relative;
+    color: var(--text);
+  }
+  .hero .subtitle {
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+    color: var(--text-muted);
+    max-width: 620px;
+    margin: 0 auto 2rem;
+    font-weight: 400;
+    line-height: 1.7;
+  }
+  .hero .cta-row {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.5rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all var(--transition);
+    cursor: pointer;
+    border: none;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+  }
+  .btn-primary:hover {
+    background: var(--accent-light);
+    box-shadow: 0 4px 16px rgba(79,70,229,0.25);
+  }
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border-light);
+  }
+  .btn-outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-soft);
+  }
+
+  /* ---- STATS ---- */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.25rem;
+    max-width: 900px;
+    margin: 0 auto 3.25rem;
+    padding: 0 2rem;
+  }
+  .stat {
+    text-align: center;
+    padding: 1.25rem 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+  }
+  .stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 0.2rem;
+  }
+
+  /* ---- DIVIDER ---- */
+  .divider {
+    max-width: 1200px;
+    margin: 0 auto;
+    border: none;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ---- BUCKET (main category) ---- */
+  .bucket {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3.5rem 2rem 1rem;
+  }
+  .bucket-header {
+    margin-bottom: 0.5rem;
+  }
+  .bucket-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 0.3rem 0.85rem;
+    border-radius: 3px;
+    margin-bottom: 0.75rem;
+  }
+  .bucket-internal .bucket-label {
+    background: var(--internal-soft);
+    color: var(--internal);
+  }
+  .bucket-client .bucket-label {
+    background: var(--client-soft);
+    color: var(--client);
+  }
+  .bucket h2 {
+    font-size: 1.85rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+  .bucket-desc {
+    color: var(--text-muted);
+    margin-top: 0.4rem;
+    font-size: 1rem;
+    max-width: 650px;
+  }
+
+  /* ---- SUB-CATEGORY ---- */
+  .subcategory {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 2rem 1rem;
+  }
+  .sub-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1.25rem;
+  }
+  .sub-icon {
+    width: 32px; height: 32px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+  }
+  .sub-header h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .sub-header .count {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    font-weight: 500;
+    margin-left: 0.15rem;
+  }
+
+  /* ---- CARDS ---- */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    transition: all var(--transition);
+    box-shadow: var(--shadow-sm);
+  }
+  .card:hover {
+    border-color: var(--border-light);
+    box-shadow: var(--shadow);
+  }
+
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 0.6rem;
+  }
+  .card h4 {
+    font-size: 1.05rem;
+    font-weight: 650;
+    letter-spacing: -0.01em;
+    color: var(--text);
+  }
+  .card-arch {
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding: 0.2rem 0.55rem;
+    border-radius: 3px;
+    background: var(--bg-soft);
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-left: 0.75rem;
+  }
+  .card-tagline {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    margin-bottom: 0.85rem;
+    line-height: 1.55;
+  }
+  .card-features {
+    list-style: none;
+    margin-bottom: 1.1rem;
+  }
+  .card-features li {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    padding: 0.25rem 0;
+    padding-left: 1.15rem;
+    position: relative;
+  }
+  .card-features li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0.6rem;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    opacity: 0.6;
+  }
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+  .tag {
+    font-size: 0.68rem;
+    font-weight: 500;
+    padding: 0.18rem 0.5rem;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  /* Tag colors — tuned for light bg */
+  .tag-python { background: #eff6ff; color: #2563eb; }
+  .tag-react { background: #ecfeff; color: #0891b2; }
+  .tag-claude { background: #fef3ee; color: #c2704a; }
+  .tag-gemini { background: #ecfdf5; color: #059669; }
+  .tag-streamlit { background: #fef2f2; color: #dc2626; }
+  .tag-fastapi { background: #ecfdf5; color: #059669; }
+  .tag-sqlite { background: #f5f3ff; color: #7c3aed; }
+  .tag-chromadb { background: #fffbeb; color: #d97706; }
+  .tag-pptx { background: #fef2f2; color: #dc2626; }
+  .tag-jinja { background: #f3f4f6; color: #6b7280; }
+  .tag-html { background: #fff7ed; color: #ea580c; }
+  .tag-nodejs { background: #ecfdf5; color: #16a34a; }
+  .tag-pandas { background: #eef2ff; color: #4f46e5; }
+  .tag-pydantic { background: #fdf2f8; color: #db2777; }
+  .tag-tavily { background: #f5f3ff; color: #7c3aed; }
+
+  /* Sub-category accent on card bullets */
+  .sub-proposal .card-features li::before { background: var(--sub-proposal); }
+  .sub-proposal .sub-icon { background: rgba(245,158,11,0.1); color: var(--sub-proposal); }
+
+  .sub-presentation .card-features li::before { background: var(--sub-presentation); }
+  .sub-presentation .sub-icon { background: rgba(236,72,153,0.1); color: var(--sub-presentation); }
+
+  .sub-project .card-features li::before { background: var(--sub-project); }
+  .sub-project .sub-icon { background: rgba(59,130,246,0.1); color: var(--sub-project); }
+
+  .sub-scoping .card-features li::before { background: var(--sub-scoping); }
+  .sub-scoping .sub-icon { background: rgba(139,92,246,0.1); color: var(--sub-scoping); }
+
+  .sub-supply .card-features li::before { background: var(--sub-supply); }
+  .sub-supply .sub-icon { background: rgba(16,185,129,0.1); color: var(--sub-supply); }
+
+  .sub-knowledge .card-features li::before { background: var(--sub-knowledge); }
+  .sub-knowledge .sub-icon { background: rgba(99,102,241,0.1); color: var(--sub-knowledge); }
+
+  /* ---- SECTIONS (approach, stack, contact) ---- */
+  .section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+  .section-header { margin-bottom: 2.5rem; }
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 3px;
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+  .section h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  .section-desc {
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+    max-width: 600px;
+  }
+
+  /* ---- APPROACH ---- */
+  .approach-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+  .approach-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+  }
+  .approach-card .icon {
+    font-size: 1.4rem;
+    margin-bottom: 0.65rem;
+  }
+  .approach-card h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+  .approach-card p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* ---- TECH STACK ---- */
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1rem;
+  }
+  .tech-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    box-shadow: var(--shadow-sm);
+  }
+  .tech-item h4 {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.6rem;
+  }
+  .tech-item p {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  /* ---- FOOTER ---- */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 2rem;
+    text-align: center;
+  }
+  footer p {
+    color: var(--text-dim);
+    font-size: 0.82rem;
+  }
+  footer a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  footer a:hover { text-decoration: underline; }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hero { padding: 8rem 1.5rem 3rem; }
+    .cards { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .bucket, .subcategory, .section { padding-left: 1.5rem; padding-right: 1.5rem; }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">silvia<span>.ai</span></a>
+    <ul class="nav-links">
+      <li><a href="#internal">Internal Accelerators</a></li>
+      <li><a href="#client">Client Workflows</a></li>
+      <li><a href="#approach">Approach</a></li>
+      <li><a href="#stack">Tech Stack</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="eyebrow">Selected work by Silvia Wu</div>
+  <h1>
+    AI workflow tools for consulting and operations
+  </h1>
+  <p class="subtitle">
+    Practical tools I designed and built to speed up proposal work,
+    project delivery, supply chain analysis, and knowledge workflows.
+  </p>
+  <div class="cta-row">
+    <a href="#internal" class="btn btn-primary">View Selected Work</a>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat fade-up">
+    <div class="stat-number">17</div>
+    <div class="stat-label">Tools Built</div>
+  </div>
+  <div class="stat fade-up">
+    <div class="stat-number">5</div>
+    <div class="stat-label">Business Domains</div>
+  </div>
+  <div class="stat fade-up">
+    <div class="stat-number">13</div>
+    <div class="stat-label">Full-Stack Apps</div>
+  </div>
+  <div class="stat fade-up">
+    <div class="stat-number">3</div>
+    <div class="stat-label">Model Providers</div>
+  </div>
+</div>
+
+<hr class="divider">
+
+
+<!-- ================================================================ -->
+<!--  BUCKET 1: CONSULTING INTERNAL ACCELERATORS                      -->
+<!-- ================================================================ -->
+<div class="bucket bucket-internal" id="internal">
+  <div class="bucket-header">
+    <div class="bucket-label">&#9878; Internal Accelerators</div>
+    <h2>Consulting Internal Accelerators</h2>
+    <p class="bucket-desc">Tools that reduce repetitive consulting work across proposals, presentations, project delivery, and scoping.</p>
+  </div>
+</div>
+
+<!-- Sub: Proposals & RFx -->
+<div class="subcategory sub-proposal">
+  <div class="sub-header">
+    <div class="sub-icon">&#9998;</div>
+    <h3>Proposals &amp; RFx <span class="count">&mdash; 3 tools</span></h3>
+  </div>
+  <div class="cards">
+
+    <div class="card fade-up">
+      <div class="card-top">
+        <h4>Proposal Drafting Tool</h4>
+        <span class="card-arch">Streamlit</span>
+      </div>
+      <p class="card-tagline">Turns an RFP into a structured first draft using past proposals, client context, and review checkpoints.</p>
+      <ul class="card-features">
+        <li>Guides the response from intake through research, outline, draft, and review</li>
+        <li>Requires outline approval before long-form writing starts</li>
+        <li>Finds reusable language from past proposals with confidence scoring</li>
+        <li>Checks alignment, win themes, and quantified value before export</li>
+      </ul>
+      <div class="card-tags">
+        <span class="tag tag-python">Python</span>
+        <span class="tag tag-streamlit">Streamlit</span>
+        <span class="tag tag-claude">Claude</span>
+        <span class="tag tag-chromadb">ChromaDB</span>
+        <span class="tag tag-html">HTML</span>
+      </div>
+    </div>
+
+    <div class="card fade-up">
+      <div class="card-top">
+        <h4>RFx Assistant</h4>
+        <span class="card-arch">Streamlit + FastAPI</span>
+      </div>
+      <p class="card-tagline">Manages the RFx workflow from RFP upload to client research, section drafting, and polished HTML export.</p>
+      <ul class="card-features">
+        <li>Semantic search over past proposals and firm credentials via ChromaDB</li>
+        <li>Builds an outline first, then drafts section by section</li>
+        <li>Client research integration and competitive positioning</li>
+        <li>Includes demo-ready outputs for stakeholder walkthroughs</li>
+      </ul>
+      <div class="card-tags">
+        <span class="tag tag-python">Python</span>
+        <span class="tag tag-streamlit">Streamlit</span>
+        <span class="tag tag-claude">Claude</span>
+        <span class="tag tag-chromadb">ChromaDB</span>
+      </div>
+    </div>
+
+    <div class="card fade-up">
+      <div class="card-top">
+        <h4>RFP Drafter for Logistics</h4>
+        <span class="card-arch">Streamlit</span>
+      </div>
+      <p class="card-tagline">Creates logistics RFP drafts with clear requirements, vendor criteria, and commercial terms from a guided intake.</p>
+      <ul class="card-features">
+        <li>Guided intake questionnaire for client context and pain points</li>
+        <li>Web-search context for TMS/WMS benchmarks and regional trends</li>
+        <li>Produces a multi-section outline and draft language</li>
+        <li>Financial guidance: cost-per-shipment, contract terms, payment schedules</li>
+      </ul>
+      <div class="card-tags">
+        <span class="tag tag-python">Python</span>
+        <span class="tag tag-streamlit">Streamlit</span>
+        <span class="tag tag-claude">Claude</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Sub: Presentations & Slides -->
+<div class="subcategory sub-presentation">
+  <div class="sub-header">
+    <div class="sub-icon">&#9881;</div>
+    <h3>Presentations &amp; Slides <span class="count">&mdash; 3 tools</span></h3>
+  </div>
+  <div class="cards">
+
+    <div class="card fade-up">
+      <div class="card-top">
+        <h4>Presentation Copilot</h4>
+        <span class="card-arch">FastAPI + React</span>
+      </div>
+      <p class="card-tagline">Converts source material into editable presentation drafts with live preview and PowerPoint export.</p>
+      <ul class="card-features">
+        <li>Multi-format ingestion: HTML, PDF text extraction, Word paragraphs</li>
+        <li>Generates PowerPoint files and HTML previews from the same deck logic</li>
+        <li>Interactive slide editing with side-by-side code and preview</li>
+        <li>Speaker view, voice input, audience mode, keyboard shortcuts</li>
+      </ul>
+      <div class="card-tags">
+        <span class="tag tag-python">Python</span>
+        <span class="tag tag-fastapi">FastAPI</span>
+        <span class="tag tag-react">React</span>
+        <span class="tag tag-claude">Claude</span>
+        <span class="tag tag-pptx">pptxgenjs</span>
+      </div>
+    </div>
+
+    <div class="card fade-up">
+      <div class="card-top">
+        <h4>Slide Builder (Gemini)</h4>
+        <span class="card-arch">Streamlit</span>
+      </div>
+      <p class="card-tagline">Helps build structured slide pages from uploaded content, reusable layouts, and configurable components.</p>
+      <ul class="card-features">
+        <li>Visual grid layout selector with real-time component configuration</li>
+        <li>Includes reusable components for KPI cards, tables, callouts, and charts</li>
+        <li>Matches icons to slide content through tagged metadata</li>
+        <li>Jinja2 HTML builder + python-pptx converter with brand token system</li>
+      </ul>
+      <div class="card-tags">
+        <span class="tag tag-python">Python</span>
+        <span class="tag tag-streamlit">Streamlit</span>
+        <span class="tag tag-gemini">Gemini</span>
+        <span class="tag tag-jinja">Jinja2</span>
+        <span class="tag tag-pptx">python-pptx</span>
+      </div>
+    </div>
+
+    <div class="card fade-up">
+      <div class="card-top">
+        <h4>Slide Builder (Claude)</h4>
+        <span class="card-arch">FastAPI + Vanilla JS</span>
+      </div>
+      <p class="card-tagline">Lets a user describe a deck, generate a PowerPoint draft, and revise individual slides in plain language.</p>
+      <ul class="card-features">
+        <li>Supports full generation, storyline-first drafting, and content splitting</li>
+        <li>Edits one slide at a time instead of regenerating the whole deck</li>
+        <li>Keeps brand rules configurable through theme placeholders</li>
+        <li>Session-based revision history with full revert support</li>
+      </ul>
+      <div class="card-tags">
+        <span class="tag tag-python">Python</span>
+        <span class="tag tag-fastapi">FastAPI</span>
+        <span class="tag tag-claude">Claude</span>
+        <span class="tag tag-nodejs">Node.js</span>
+        <span class="tag tag-pptx">pptxgenjs</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Sub: Project Delivery -->
+<div class="subcategory sub-project">
+  <div class="sub-header">
+    <div class="sub-icon">&#9632;</div>
+    <h3>Project Delivery <span class="count">&mdash; 2 tools</span></h3>
+  </div>
+  <div class="cards">
+
+    <div class="card fade-up">
+      <div class="card-top">
+        <h4>Project Management Copilot</h4>
+        <span class="card-arch">FastAPI + React</span>
+      </div>
+      <p class="card-tagline">Turns project documents into a working PMO dashboard for timelines, RAID, stakeholders, and meeting actions.</p>
+      <ul class="card-features">
+        <li>7 upload modes with merge-aware re-import and deduplication</li>
+        <li>Dashboard: health summary, Gantt timeline, RAID log, power map</li>
+        <li>Chat actions update structured project data instead of free-text notes</li>
+        <li>Exports a tabbed HTML version of the project dashboard</li>
+      </ul>
+      <div class="card-tags">
+        <span class="tag tag-python">Python</span>
+        <span class="tag tag-fastapi">FastAPI</span>
+        <span class="tag tag-react">React</span>
+        <span class="tag tag-claude">Claude</span>
+        <span class="tag tag-sqlite">SQLite</span>
+      </div>
+    </div>
+
+    <div class="card fade-up">
+      <div class="card-top">
+        <h4>Project Knowledge Q&amp;A</h4>
+        <span class="card-arch">FastAPI + React</span>
+      </div>
+      <p class="card-tagline">Lets teams ask questions across project files and get answers with source references.</p>
+      <ul class="card-features">
+        <li>Uses a fast model for indexing and a stronger model for user-facing answers</li>
+        <li>Format-agnostic ingestion: Word, PowerPoint, Excel, PDF, Markdown</li>
+        <li>Full-text search + heuristic query routing &mdash; no embeddings needed</li>
+        <li>Requires source attribution with page-level previews</li>
+      </ul>
+      <div class="card-tags">
+        <span class="tag tag-python">Python</span>
+        <span class="tag tag-fastapi">FastAPI</span>
+        <span class="tag tag-react">React</span>
+        <span class="tag tag-claude">Claude</span>
+        <span class="tag tag-sqlite">SQLite</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Sub: Scoping & Analytics -->
+<div class="subcategory sub-scoping">
+  <div class="sub-header">
+    <div class="sub-icon">&#10022;</div>
+    <h3>Scoping &amp; Analytics <span class="count">&mdash; 2 tools</span></h3>
+  </div>
+  <div class="cards">
+
+    <div class="card fade-up">
+      <div class="card-top">
+        <h4>Network Design Data Pipeline</h4>
+        <span class="card-arch">Python Toolkit</span>
+      </div>
+      <p class="card-tagline">Cleans messy client files into a modeling-ready schema for distribution network analysis.</p>
+      <ul class="card-features">
+        <li>Intake inspector: catalogs files, infers data roles, extracts samples</li>
+        <li>Logs open questions when source data is ambiguous</li>
+        <li>Normalizer with geocoding, distance matrices, and tariff lookups</li>
+        <li>Sanity checks: foreign key integrity, mass balance, mandatory fields</li>
+      </ul>
+      <div class="card-tags">
+        <span class="tag tag-python">Python</span>
+        <span class="tag tag-pandas">pandas</span>
+        <span class="tag tag-claude">Claude</span>
+      </div>
+    </div>
+
+    <div class="card fade-up">
+      <div class="card-top">
+        <h4>Project Effort Estimator</h4>
+        <span class="card-arch">Streamlit</span>
+      </div>
+      <p class="card-tagline">Estimates project effort for network design work while making assumptions visible and adjustable.</p>
+      <ul class="card-features">
+        <li>Resolves dependencies before calculating effort scores</li>
+        <li>Combines multiplicative and additive drivers with dampening</li>
+        <li>Includes a calibration UI for assumption overrides</li>
+        <li>Keeps scoring deterministic; the model only writes the narrative</li>
+      </ul>
+      <div class="card-tags">
+        <span class="tag tag-python">Python</span>
+        <span class="tag tag-streamlit">Streamlit</span>
+        <span class="tag tag-gemini">Gemini</span>
+        <span class="tag tag-pydantic">Pydantic</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="divider" style="margin-top: 2rem;">
+
+
+<!-- ================================================================ -->
+<!--  BUCKET 2: CLIENT-FACING SOLUTIONS                               -->
+<!-- ================================================================ -->
+<div class="bucket bucket-client" id="client">
+  <div class="bucket-header">
+    <div class="bucket-label">&#9733; Client Workflows</div>
+    <h2>Client-Facing Workflows</h2>
+    <p class="bucket-desc">Tools for operational teams: business cases, decision support, exception handling, and knowledge access.</p>
+  </div>
+</div>
+
+<!-- Sub: Supply Chain & Operations -->
+<div class="subcategory sub-supply">
+  <div class="sub-header">
+    <div class="sub-icon">&#9878;</div>
+    <h3>Supply Chain &amp; Operations <span class="count">&mdash; 5 tools</span></h3>
+  </div>
+  <div class="cards">
+
+    <div class="card fade-up">
+      <div class="card-top">
+        <h4>TMS Business Case Tool</h4>
+        <span class="card-arch">Streamlit</span>
+      </div>
+      <p class="card-tagline">Builds a TMS investment case from operational inputs, savings assumptions, and financial scenarios.</p>
+      <ul class="card-features">
+        <li>Conversational intake to capture freight spend, team size, and mode mix</li>
+        <li>Applies benchmark-driven savings levers based on business context</li>
+        <li>Full financial engine: ROI, NPV, TCO, IRR, and sensitivity analysis</li>
+        <li>Self-contained HTML report and editable Excel model export</li>
+      </ul>
+      <div class="card-tags">
+        <span class="tag tag-python">Python</span>
+        <span class="tag tag-streamlit">Streamlit</span>
+        <span class="tag tag-gemini">Gemini</span>
+        <span class="tag tag-pydantic">Pydantic</span>
+        <span class="tag tag-sqlite">SQLite</span>
+      </div>
+    </div>
+
+    <div class="card fade-up">
+      <div class="card-top">
+        <h4>WMS Business Case Tool</h4>
+        <span class="card-arch">Streamlit</span>
+      </div>
+      <p class="card-tagline">Creates WMS investment cases with scenario modeling, savings levers, and implementation risks.</p>
+      <ul class="card-features">
+        <li>WMS-specific intake: warehousing costs, systems, team size, pain points</li>
+        <li>11 quantitative + 8 qualitative savings levers with smart scoring</li>
+        <li>Three-scenario financial model (conservative, base, optimistic)</li>
+        <li>Drafts RAID items and highlights compliance considerations</li>
+      </ul>
+      <div class="card-tags">
+        <span class="tag tag-python">Python</span>
+        <span class="tag tag-streamlit">Streamlit</span>
+        <span class="tag tag-gemini">Gemini</span>
+        <span class="tag tag-pydantic">Pydantic</span>
+        <span class="tag tag-sqlite">SQLite</span>
+      </div>
+    </div>
+
+    <div class="card fade-up">
+      <div class="card-top">
+        <h4>Supply Chain Exception Handler</h4>
+        <span class="card-arch">FastAPI + React</span>
+      </div>
+      <p class="card-tagline">Helps operations teams spot supply chain exceptions, understand likely causes, and choose a response.</p>
+      <ul class="card-features">
+        <li>Rule-based exception detection with SLA-aware severity scoring</li>
+        <li>Suggests likely root causes and 2&ndash;3 resolution options</li>
+        <li>Drafts operational messages for human-in-the-loop approval</li>
+        <li>Includes an evaluation set for accuracy testing</li>
+      </ul>
+      <div class="card-tags">
+        <span class="tag tag-python">Python</span>
+        <span class="tag tag-fastapi">FastAPI</span>
+        <span class="tag tag-react">React</span>
+        <span class="tag tag-claude">Claude</span>
+        <span class="tag tag-pydantic">Pydantic</span>
+      </div>
+    </div>
+
+    <div class="card fade-up">
+      <div class="card-top">
+        <h4>Org Chart / TOM Editor</h4>
+        <span class="card-arch">FastAPI + Vanilla JS</span>
+      </div>
+      <p class="card-tagline">Builds editable org charts and target operating model views from structured descriptions.</p>
+      <ul class="card-features">
+        <li>Parses markdown org descriptions into interactive SVG charts</li>
+        <li>Cross-org relationship rendering with hover/click isolation</li>
+        <li>Supports chat-based edits with replayable change history</li>
+        <li>Export to PNG, draw.io XML, and self-contained HTML</li>
+      </ul>
+      <div class="card-tags">
+        <span class="tag tag-python">Python</span>
+        <span class="tag tag-fastapi">FastAPI</span>
+        <span class="tag tag-claude">Claude</span>
+        <span class="tag tag-jinja">Jinja2</span>
+        <span class="tag tag-sqlite">SQLite</span>
+      </div>
+    </div>
+
+    <div class="card fade-up">
+      <div class="card-top">
+        <h4>FDI Location Scorer</h4>
+        <span class="card-arch">Streamlit</span>
+      </div>
+      <p class="card-tagline">Ranks countries for foreign direct investment using research inputs, source tracking, and adjustable weights.</p>
+      <ul class="card-features">
+        <li>Combines live web research with structured CSV datasets</li>
+        <li>Scores each country 1&ndash;10 across 8 configurable factors</li>
+        <li>Interactive HTML report with adjustable weight sliders</li>
+        <li>Tracks citations back to source data</li>
+      </ul>
+      <div class="card-tags">
+        <span class="tag tag-python">Python</span>
+        <span class="tag tag-streamlit">Streamlit</span>
+        <span class="tag tag-claude">Claude</span>
+        <span class="tag tag-tavily">Tavily</span>
+        <span class="tag tag-html">HTML</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Sub: Knowledge & Learning -->
+<div class="subcategory sub-knowledge">
+  <div class="sub-header">
+    <div class="sub-icon">&#9733;</div>
+    <h3>Knowledge &amp; Learning <span class="count">&mdash; 2 tools</span></h3>
+  </div>
+  <div class="cards">
+
+    <div class="card fade-up">
+      <div class="card-top">
+        <h4>IT Manual Q&amp;A Tool</h4>
+        <span class="card-arch">FastAPI + React</span>
+      </div>
+      <p class="card-tagline">Lets operators ask questions about technical manuals while admins improve answers through corrections.</p>
+      <ul class="card-features">
+        <li>Multi-topic organization with per-topic manual ingestion</li>
+        <li>Admin corrections override and improve generated answers</li>
+        <li>Multilingual: detects query language and responds accordingly</li>
+        <li>Feedback queue with A/B testing via optional corrections layer</li>
+      </ul>
+      <div class="card-tags">
+        <span class="tag tag-python">Python</span>
+        <span class="tag tag-fastapi">FastAPI</span>
+        <span class="tag tag-react">React</span>
+        <span class="tag tag-claude">Claude</span>
+        <span class="tag tag-sqlite">SQLite</span>
+      </div>
+    </div>
+
+    <div class="card fade-up">
+      <div class="card-top">
+        <h4>Adaptive Learning Tutor</h4>
+        <span class="card-arch">FastAPI + React</span>
+      </div>
+      <p class="card-tagline">Personalized tutoring workflow with spaced repetition, mastery tracking, and progress analysis.</p>
+      <ul class="card-features">
+        <li>Session planner selects next concept based on persistent mastery model</li>
+        <li>Turns each tutoring exchange into a mastery update</li>
+        <li>SM-2 spaced repetition with deadline-aware scheduling</li>
+        <li>Merges learning state across sessions in the background</li>
+      </ul>
+      <div class="card-tags">
+        <span class="tag tag-python">Python</span>
+        <span class="tag tag-fastapi">FastAPI</span>
+        <span class="tag tag-react">React</span>
+        <span class="tag tag-claude">Claude</span>
+        <span class="tag tag-sqlite">SQLite</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="divider" style="margin-top: 2rem;">
+
+
+<!-- APPROACH -->
+<section class="section" id="approach">
+  <div class="section-header">
+    <div class="section-label">Approach</div>
+    <h2>How I Build</h2>
+    <p class="section-desc">The working principles behind these tools.</p>
+  </div>
+  <div class="approach-grid">
+    <div class="approach-card">
+      <div class="icon">&#9881;</div>
+      <h4>Business Problem First</h4>
+      <p>Each build starts from a real workflow problem. The model is one part of the system, not the point of the system.</p>
+    </div>
+    <div class="approach-card">
+      <div class="icon">&#9878;</div>
+      <h4>Human in the Loop</h4>
+      <p>Important decisions keep approval gates. Models suggest; people decide. Deterministic logic handles math and checks.</p>
+    </div>
+    <div class="approach-card">
+      <div class="icon">&#9733;</div>
+      <h4>Production Quality</h4>
+      <p>The goal is a usable tool: validation, error handling, exports, and a UI someone can actually work in.</p>
+    </div>
+    <div class="approach-card">
+      <div class="icon">&#9998;</div>
+      <h4>Consulting-Native Design</h4>
+      <p>Outputs match consulting workflows: HTML reports, editable PowerPoint, Excel models, and formats teams can reuse.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- TECH STACK -->
+<section class="section" id="stack">
+  <div class="section-header">
+    <div class="section-label">Technology</div>
+    <h2>Core Stack</h2>
+  </div>
+  <div class="tech-grid">
+    <div class="tech-item">
+      <h4>Model Providers</h4>
+      <p>Anthropic Claude (Sonnet, Haiku, Opus) &middot; Google Gemini (Flash, Pro) &middot; LiteLLM for provider abstraction</p>
+    </div>
+    <div class="tech-item">
+      <h4>Backend</h4>
+      <p>Python 3.11+ &middot; FastAPI &middot; Streamlit &middot; Pydantic v2 &middot; SQLAlchemy &middot; SQLite</p>
+    </div>
+    <div class="tech-item">
+      <h4>Frontend</h4>
+      <p>React 18/19 &middot; TypeScript &middot; Vite &middot; Tailwind CSS &middot; TanStack Query</p>
+    </div>
+    <div class="tech-item">
+      <h4>AI Tooling</h4>
+      <p>ChromaDB &middot; Tavily API &middot; Claude Tool Use &middot; Structured Output &middot; Prompt Caching</p>
+    </div>
+    <div class="tech-item">
+      <h4>Document Engineering</h4>
+      <p>python-pptx &middot; pptxgenjs &middot; openpyxl &middot; python-docx &middot; Jinja2 &middot; PDF parsing</p>
+    </div>
+    <div class="tech-item">
+      <h4>Dev &amp; Testing</h4>
+      <p>Claude Code &middot; pytest &middot; Playwright &middot; OpenAPI/Swagger &middot; Git</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+      <p>&copy; 2025 Silvia Wu &middot; AI workflow tools for consulting and operations</p>
+</footer>
+
+</body>
+</html>
